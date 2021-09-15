@@ -1,36 +1,53 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './styles.scss';
-import { ApolloClient, InMemoryCache, ApolloProvider, HttpLink, from } from '@apollo/client';
-import { onError } from '@apollo/client/link/error';
+import { gql } from 'apollo-boost';
+import { graphql } from 'react-apollo';
+import Product from './Product';
 
-const errorLink = onError(({ graphqlError, networkError }) => {
-    if (graphqlError) {
-        graphqlError.map(({ message, location, path }) => {
-            alert('Graphql erro ${message}')
-        })
+const getAllProducts = gql`
+    {
+        category {
+            products {
+              id
+              name
+            }
+        }
     }
-})
-const link = from([
-    errorLink,
-    new HttpLink({ uri: "http://localhost:4000/" })
-])
-
-const client = new ApolloClient({
-    cache: InMemoryCache(),
-    link: link
-})
+`;
 
 class Products extends React.Component {
+    displayProducts() {
+        var data = this.props.data;
+        if (data.loading) {
+            return (<div>Loading books...</div>)
+        } else {
+            return data.category.products.map(product => {
+                const productName = product.name;
+                const productId = product.id;
+                const configProduct = {
+                    productName,
+                    productId
+                };
+                return (
+                    <Product {...configProduct} />
+                );
+            })
+        }
+    }
 
     render() {
+        console.log(this.props)
         return (
-            <ApolloProvider client={client}>
-                <div className="products">
-
+            <div className="products">
+                <h1>Browse Products</h1>
+                <div className="productresults">         
+                    <ul id="product-list">
+                        {this.displayProducts()}
+                    </ul>
                 </div>
-            </ApolloProvider>
+            </div>
         );
     }
 }
 
-export default Products;
+export default graphql(getAllProducts)(Products);

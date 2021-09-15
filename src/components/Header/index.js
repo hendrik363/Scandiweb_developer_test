@@ -10,14 +10,8 @@ class Header extends react.Component {
                     <div className="callToActions">
                         <ul>
                             <li>
-                                <Link to="/women">
-                                    Women
-                                </Link>
-                                <Link to="/men">
-                                    Men
-                                </Link>
-                                <Link to="/kids">
-                                    Kids
+                                <Link to="/products">
+                                    Products
                                 </Link>
                             </li>
                         </ul>
