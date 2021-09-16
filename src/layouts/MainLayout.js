@@ -5,7 +5,7 @@ class MainLayout extends React.Component {
 
     render()  {
         return(
-            <div>
+            <div className="endToEnd">
                 <Header />
                 <div className="main">
                     {this.props.children}

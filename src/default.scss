@@ -3,7 +3,6 @@ html {
 }
 
 html, body {
-    height: 100%;
     margin: 0;
     padding: 0;
 }
@@ -28,4 +27,22 @@ a, a:hover {
     -webkit-transition: all .4s ease-in-out;
     -moz-transition: all .4s ease-in-out;
     transition: all .4s ease-in-out;
+}
+
+.main {
+    width: 100%;
+    height: calc(100% - 6.5rem);
+    max-width: 1450px;
+    padding: 0 10px;
+    margin: 0 auto;
+}
+.App {
+    width: 100%;
+    max-width: 1450px;
+    padding: 0 10px;
+    margin: 0 auto;
+}
+
+.endToEnd {
+    width:100%;
 }

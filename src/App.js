@@ -10,6 +10,7 @@ import MainLayout from "./layouts/MainLayout";
 // pages
 import HomePage from './pages/HomePage/HomePage'
 import ProductPage from "./pages/ProductPage/ProductPage";
+import ProductDetails from "./pages/ProductDetails";
 
 //apollo client setup
 const client = new ApolloClient({
@@ -30,6 +31,11 @@ class App extends React.Component {
             <Route path="/products" render={() => (
               <MainLayout>
                 <ProductPage />
+              </MainLayout>
+            )} />
+            <Route path="/product/:productID" render={() => (
+              <MainLayout>
+                <ProductDetails />
               </MainLayout>
             )} />
           </Switch>
