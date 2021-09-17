@@ -1,5 +1,6 @@
 import React from "react";
 import './styles.scss';
+import Button from './../forms/Button';
 
 class Modal extends React.Component {
     onClose = e => {
@@ -14,9 +15,11 @@ class Modal extends React.Component {
                 <div className="modalWrap">
                     <div className="modal">
                         {this.props.children}
-                        <button className="toggle-button" onClick={this.onClose}>
+                        <div onClick={this.onClose}>
+                        <Button className="toggle-button" >
                             close
-                        </button>
+                        </Button>
+                        </div>
                     </div>
                 </div>
             </div>

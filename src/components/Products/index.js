@@ -67,6 +67,8 @@ class Products extends React.Component {
                                         Add new product
                                     </h2>
                                     <FormInput label="Name" />
+                                    <FormInput label="Main image URL" />
+                                    <FormInput label="Price" />
                                 </form>
                             </div>
                         </Modal>
