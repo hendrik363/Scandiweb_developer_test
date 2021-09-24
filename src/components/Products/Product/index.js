@@ -31,6 +31,11 @@ class Product extends React.Component {
                             </span>
                         </li>
                         <li>
+                            <span className="price">
+                                {this.props.productPrice}
+                            </span>
+                        </li>
+                        <li>
                             <div className="addToCart">
                                 <Button {...configAddToCardBtn}>
                                     Add to card

@@ -6,6 +6,13 @@ html, body {
     margin: 0;
     padding: 0;
 }
+html,
+body,
+#root,
+.App,
+.fullHeight {
+  height: 100%;
+}
 
 *, ::before, ::after {
     -webkit-box-sizing: border-box;
@@ -32,12 +39,6 @@ a, a:hover {
 .main {
     width: 100%;
     height: calc(100% - 6.5rem);
-    max-width: 1450px;
-    padding: 0 10px;
-    margin: 0 auto;
-}
-.App {
-    width: 100%;
     max-width: 1450px;
     padding: 0 10px;
     margin: 0 auto;
