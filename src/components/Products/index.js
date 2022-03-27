@@ -28,6 +28,7 @@ class Products extends React.Component {
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+  
 
   componentDidMount() {
     const { fetchProducts } = this.props;
@@ -51,11 +52,13 @@ class Products extends React.Component {
       return products.map((product) => {
         const productName = product.name;
         const productId = product.id;
+        const productPic = product.gallery;
         const configProduct = {
           productName,
           productId,
+          productPic
         };
-        return <Product {...configProduct} />;
+        return <Product {...configProduct} key={productId}/>;
       });
     }
   }
@@ -140,9 +143,9 @@ class Products extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  error: getProductsError(state),
-  products: getProducts(state),
-  pending: getProductsPending(state),
+  error: getProductsError(state.productData),
+  products: getProducts(state.productData),
+  pending: getProductsPending(state.productData),
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -154,3 +157,4 @@ const mapDispatchToProps = (dispatch) =>
   );
 
 export default connect(mapStateToProps, mapDispatchToProps)(Products);
+

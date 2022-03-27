@@ -1,23 +1,28 @@
 import React from "react";
-import productThumbnail from './../../../assets/product.jpg';
 import './../styles.scss';
 import Button from './../../forms/Button';
 import { Link } from 'react-router-dom';
 
 
 class Product extends React.Component {
-    
+
     render() {
+        
         const configAddToCardBtn = {
             type: 'button'
         };
         const productName = this.props.productName;
         const productId = this.props.productId;
+        const productPic = this.props.productPic;
         return (
             <div className="product" key={productId}>
+                
                 <div className="thumb">
                     <Link to={`/product/${productId}`}>
-                        <img src={productThumbnail} alt={productName} />
+                        <img src={productPic[0]} alt={productPic} />
+                        <div className="overlay">
+                            <div className="overpic"></div>
+                        </div>
                     </Link>
                 </div>
 

@@ -12,6 +12,7 @@ const getAllProducts = gql`
       products {
         id
         name
+        gallery
       }
     }
   }

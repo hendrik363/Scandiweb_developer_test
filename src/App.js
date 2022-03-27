@@ -28,9 +28,9 @@ class App extends React.Component {
               <ProductPage />
             </MainLayout>
           )} />
-          <Route path="/product/:productID" render={() => (
+          <Route path="/product/:productID"  render={({match}) => (
             <MainLayout>
-              <ProductDetails />
+              <ProductDetails match={match}/>
             </MainLayout>
           )} />
         </Switch>
