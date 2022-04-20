@@ -5,13 +5,6 @@ import FormInput from "./../forms/FormInput";
 import Modal from "./../Modal";
 import Button from "./../forms/Button";
 import { connect } from "react-redux";
-import { fetchProducts } from "../../redux/Products/products.actions";
-import {
-  getProductsError,
-  getProducts,
-  getProductsPending,
-} from "../../redux/Products/products.reducer";
-import { bindActionCreators } from "redux";
 
 class Products extends React.Component {
   constructor(props) {
@@ -22,46 +15,24 @@ class Products extends React.Component {
       price: "",
     };
 
-    this.shouldComponentRender = this.shouldComponentRender.bind(this);
     this.handlePriceChange = this.handlePriceChange.bind(this);
     this.handleURLChange = this.handleURLChange.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  
 
-  componentDidMount() {
-    const { fetchProducts } = this.props;
-    fetchProducts();
-  }
-
-  shouldComponentRender() {
-    const { pending } = this.props;
-    return pending;
-  }
 
   displayProducts() {
     const { products } = this.props;
-    if (this.shouldComponentRender()) {
-      return (
-        <div>
-          <h1>Loading...</h1>
-        </div>
-      );
-    } else {
-      return products.map((product) => {
-        const productName = product.name;
-        const productId = product.id;
-        const productPic = product.gallery;
-        const configProduct = {
-          productName,
-          productId,
-          productPic
-        };
-        return <Product {...configProduct} key={productId}/>;
-      });
-    }
+
+    return products.map((product) => {
+      const configProduct = {
+        product
+      };
+      return <Product {...configProduct} key={product.id} />;
+    });
   }
+
 
   state = {
     show: false,
@@ -142,19 +113,11 @@ class Products extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  error: getProductsError(state.productData),
-  products: getProducts(state.productData),
-  pending: getProductsPending(state.productData),
-});
+const mapStateToProps = (state) => {
+  return {
+    products: state.productData.products
+  };
+};
 
-const mapDispatchToProps = (dispatch) =>
-  bindActionCreators(
-    {
-      fetchProducts: fetchProducts,
-    },
-    dispatch
-  );
-
-export default connect(mapStateToProps, mapDispatchToProps)(Products);
+export default connect(mapStateToProps)(Products);
 

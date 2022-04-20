@@ -1,86 +1,52 @@
 import React from "react";
 import "./styles.scss";
 import { connect } from "react-redux";
-import { fetchProductDetails } from "../../redux/ProductDetails/productDetails.actions";
-import {
-  getProductDetailsError,
-  getProductDetails,
-  getProductDetailsPending,
-} from "../../redux/ProductDetails/productDetails.reducer";
-import { bindActionCreators } from "redux";
-
 
 class ProductCard extends React.Component {
-  constructor(props) {
-    super(props);
 
-    this.shouldComponentRender = this.shouldComponentRender.bind(this);
-  }
-  componentDidMount() {
-    const productID = this.props.id;
-    const { fetchProductDetails } = this.props;
-    fetchProductDetails(productID);
-  }
-
-  shouldComponentRender() {
-    const { pending } = this.props;
-    return pending;
-  }
 
   displayProductDetails() {
-    const { product } = this.props;
-    console.log("GALLERY: " + product)
-    if (this.shouldComponentRender()) {
-      return (
-        <div>
-          <h1>Loading...</h1>
-        </div>
-      );
-    } else {
-      return (
-        <div className="productcard">
+    const { gallery, name, price, description } = this.props.product;
+    console.log(price);
+    return (
+      <div className="productcard">
         <div className="hero">
-          <img src={product.gallery} />
+          <img src={gallery[0]} />
         </div>
-        <div className="productdetails">
-          <ul>
+        <div className="productDetails">
+          <ul className="list">
             <li>
               <h1>
-                {product.name}
+                {name}
               </h1>
               <h2>
-                {}
+                {price} €
               </h2>
-              
-                {product.description}
-              
+              <p>{description}</p>
+              <button className="btn43-44 btn-45">Add to cart</button>
+
             </li>
           </ul>
         </div>
       </div>);
-    }
   }
 
   render() {
     return (
       <div>
-      {this.displayProductDetails()}
+        {this.displayProductDetails()}
       </div>
     );
   }
 }
-const mapStateToProps = (state) => ({
-  error: getProductDetailsError(state.productDetailsData),
-  product: getProductDetails(state.productDetailsData),
-  pending: getProductDetailsPending(state.productDetailsData),
-});
 
-const mapDispatchToProps = (dispatch) =>
-  bindActionCreators(
-    {
-      fetchProductDetails: fetchProductDetails,
-    },
-    dispatch
-  );
+const mapStateToProps = (state) => {
+  return {
+    product: state.productData.product
+  }
+}
 
-export default connect( mapStateToProps, mapDispatchToProps)(ProductCard);
+
+
+
+export default connect(mapStateToProps)(ProductCard);

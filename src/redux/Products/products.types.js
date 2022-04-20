@@ -1,25 +1,7 @@
-export const FETCH_PRODUCT_PENDING = 'FETCH_PRODUCT_PENDING';
-export const FETCH_PRODUCT_SUCCESS = 'FETCH_PRODUCT_SUCCESS';
-export const FETCH_PRODUCT_FAIL = 'FETCH_PRODUCT_FAIL';
+export const FETCH_PRODUCTS = 'FETCH_PRODUCTS';
+export const FETCH_PRODUCT = 'FETCH_PRODUCT';
 
 
-export function fetchProductsPending() {
-    return {
-        type: FETCH_PRODUCT_PENDING
-    }
-}
 
-export function fetchProductsSuccess(products) {
-    return {
-        type: FETCH_PRODUCT_SUCCESS,
-        payload: products
-    }
-}
 
-export function fetchProductsError(error) {
-    return {
-        type: FETCH_PRODUCT_FAIL,
-        error: error
-    }
-}
 

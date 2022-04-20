@@ -1,28 +1,24 @@
 import React from "react";
 import './../styles.scss';
-import Button from './../../forms/Button';
 import { Link } from 'react-router-dom';
-
+import { connect } from "react-redux";
+import { fetchProduct } from "../../../redux/Products/products.actions";
 
 class Product extends React.Component {
+    handleClick = () => {
+        const item = this.props.product;
+        this.props.fetchProduct(item);
+    }
 
     render() {
-        
-        const configAddToCardBtn = {
-            type: 'button'
-        };
-        const productName = this.props.productName;
-        const productId = this.props.productId;
-        const productPic = this.props.productPic;
+        const product = this.props.product;
+        const { name, id, gallery, price } = this.props.product;
         return (
-            <div className="product" key={productId}>
+            <div className="product" key={id}>
                 
                 <div className="thumb">
-                    <Link to={`/product/${productId}`}>
-                        <img src={productPic[0]} alt={productPic} />
-                        <div className="overlay">
-                            <div className="overpic"></div>
-                        </div>
+                    <Link to={`/product/${id}`} onClick={this.handleClick}>
+                        <img src={gallery[0]}/>                
                     </Link>
                 </div>
 
@@ -30,21 +26,21 @@ class Product extends React.Component {
                     <ul>
                         <li>
                             <span className="name">
-                                <Link to={`/product/${productId}`}>
-                                    {productName}
+                                <Link to={`/product/${id}`} onClick={() => fetchProduct(product)}>
+                                    {name}
                                 </Link>
                             </span>
                         </li>
                         <li>
                             <span className="price">
-                                {this.props.productPrice}
+                                {price} €
                             </span>
                         </li>
                         <li>
                             <div className="addToCart">
-                                <Button {...configAddToCardBtn}>
-                                    Add to card
-                                </Button>
+                                <button className="btn43-44 btn-45">
+                                    Add to cart
+                                </button>
                             </div>
                         </li>
                     </ul>
@@ -53,4 +49,12 @@ class Product extends React.Component {
         );
     }
 }
-export default Product;
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+      fetchProduct: (product) => dispatch(fetchProduct(product))
+    };
+  };
+
+
+export default connect(null, mapDispatchToProps)(Product);

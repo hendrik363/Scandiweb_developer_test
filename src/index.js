@@ -2,23 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import store from './redux/createStore';
-import { ApolloProvider } from "react-apollo";
-import ApolloClient from "apollo-boost";
+import store, { persistor } from './redux/createStore';
 import App from './App';
+import { PersistGate } from 'redux-persist/integration/react'
 
-const client = new ApolloClient({
-  uri: 'http://localhost:4000'
-})
+
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <ApolloProvider client={client}>
+      <PersistGate loading={null} persistor={persistor}> 
         <BrowserRouter>
           <App />
         </BrowserRouter>
-      </ApolloProvider>
+      </PersistGate>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
