@@ -9,6 +9,7 @@ import MainLayout from "./layouts/MainLayout";
 import HomePage from './pages/HomePage/HomePage'
 import ProductPage from "./pages/ProductPage/ProductPage";
 import ProductDetails from "./pages/ProductDetails";
+import BagsPage from "./pages/BagsPage/BagsPage";
 
 //apollo client setup
 
@@ -31,6 +32,11 @@ class App extends React.Component {
           <Route path="/product/:productID"  render={({match}) => (
             <MainLayout>
               <ProductDetails match={match}/>
+            </MainLayout>
+          )} />
+          <Route path="/bags"  render={() => (
+            <MainLayout>
+              <BagsPage/>
             </MainLayout>
           )} />
         </Switch>

@@ -6,12 +6,14 @@ class ProductCard extends React.Component {
 
 
   displayProductDetails() {
-    const { gallery, name, price, description } = this.props.product;
-    console.log(price);
+    const name = this.props.product.name;
+    const gallery = this.props.product.image.url;
+    const description = this.props.product.description.html;
+    const price = this.props.product.price_range.maximum_price.final_price.value;
     return (
       <div className="productcard">
         <div className="hero">
-          <img src={gallery[0]} />
+          <img src={gallery} alt="product img"/>
         </div>
         <div className="productDetails">
           <ul className="list">
@@ -22,7 +24,7 @@ class ProductCard extends React.Component {
               <h2>
                 {price} €
               </h2>
-              <p>{description}</p>
+              <p dangerouslySetInnerHTML={{ __html: description}}></p>
               <button className="btn43-44 btn-45">Add to cart</button>
 
             </li>
@@ -42,7 +44,7 @@ class ProductCard extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    product: state.productData.product
+    product: state.productDetailsData.product
   }
 }
 

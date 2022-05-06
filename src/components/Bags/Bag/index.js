@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 import { fetchProduct } from "../../../redux/ProductDetails/productDetails.actions";
 
-class Product extends React.Component {
+class Bag extends React.Component {
     handleClick = () => {
         const item = this.props.product;
         this.props.fetchProduct(item);
@@ -12,11 +12,12 @@ class Product extends React.Component {
 
     render() {
         const name = this.props.product.name;
+        const price = this.props.product.price_range.maximum_price.final_price.value;
         const gallery = this.props.product.image.url;
         const id = this.props.product.id;
-        const price = this.props.product.price_range.maximum_price.final_price.value;
+        //console.log("PRODUCT: " + JSON.stringify(productPic))
         return (
-            <div className="product" key={id}>
+            <div className="bag" key={id}>
 
                 <div className="thumb">
                     <Link to={`/product/${id}`} onClick={this.handleClick}>
@@ -58,5 +59,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-
-export default connect(null, mapDispatchToProps)(Product);
+export default connect(null, mapDispatchToProps)(Bag);

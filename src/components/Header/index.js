@@ -20,6 +20,11 @@ class Header extends react.Component {
                                     Products
                                 </Link>
                             </li>
+                            <li>
+                                <Link to="/bags">
+                                    Bags
+                                </Link>
+                            </li>
                         </ul>
                     </div>
                 </div>

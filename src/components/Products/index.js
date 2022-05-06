@@ -13,12 +13,14 @@ class Products extends React.Component {
       name: "",
       url: "",
       price: "",
+      description: ""
     };
 
     this.handlePriceChange = this.handlePriceChange.bind(this);
     this.handleURLChange = this.handleURLChange.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDescChange = this.handleDescChange.bind(this);
   }
 
 
@@ -55,9 +57,13 @@ class Products extends React.Component {
     this.setState({ price: e.target.value });
   }
 
+  handleDescChange(e) {
+    this.setState({ description: e.target.value })
+  }
+
   handleSubmit(e) {
     e.preventDefault();
-    //console.log(this.state);
+    console.log(this.state.price);
     this.showModal();
   }
 
@@ -81,24 +87,33 @@ class Products extends React.Component {
                   <h2>Add new product</h2>
 
                   <FormInput
-                    placeholder="Product name"
+                    placeholder="Product name..."
                     type="text"
                     label="Name"
-                    value={this.state.value}
+                    value={this.state.name}
                     handleChange={this.handleNameChange}
                   />
 
                   <FormInput
-                    placeholder="URL"
+                    placeholder="URL..."
                     type="text"
                     label="Main image URL"
+                    value={this.state.url}
                     handleChange={this.handleURLChange}
                   />
                   <FormInput
-                    placeholder="Price"
+                    placeholder="Price..."
                     type="number"
                     label="Price"
+                    value={this.state.price}
                     handleChange={this.handlePriceChange}
+                  />
+                  <FormInput
+                    placeholder="Add description..."
+                    type="text"
+                    label="Description"
+                    value={this.state.description}
+                    handleChange={this.handleDescChange}
                   />
                   <Button>Add product</Button>
                 </form>

@@ -1,21 +1,17 @@
-import {FETCH_PRODUCTDETAILS} from "./productDetails.types";
+import * as actionTypes from "./productDetails.types";
 
 const initialState = {
-    id: {},
-    product: {},
+    product: null
 };
-
 
 export default function productDetailsReducer(state = initialState, action) {
     switch(action.type) {  
-        case FETCH_PRODUCTDETAILS:
+        case actionTypes.FETCH_PRODUCT:
             return {
-                ...state, 
-                product:  action.id
+                ...state,
+                product: action.payload
             }
         default:
             return state;
     }
 };
-
-

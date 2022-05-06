@@ -6,11 +6,4 @@ export function fetchProducts() {
   }
 }
 
-export function fetchProduct(product) {
-  return {
-    type: actionTypes.FETCH_PRODUCT,
-    payload: product
-  }
-}
-
 
